@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Income Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333333;
+            margin-bottom: 30px;
+        }
+
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #444;
+        }
+
+        .radio-group {
+            margin-bottom: 20px;
+        }
+
+        .radio-group label {
+            display: block;
+            margin: 5px 0;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+            color: #1a73e8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>INCOME PREDICTION</h1>
+        <form action="{{ url_for('index') }}" method="post">
+            <label>Age:</label>
+            <input type="number" name="age" placeholder="Enter Your Age" required>
+
+            <label>Education Number:</label>
+            <input type="number" name="education-num" placeholder="Enter Education Num" required>
+
+            <label>Capital Gain:</label>
+            <input type="number" name="capital-gain" placeholder="Enter Capital Gain" required>
+
+            <label>Capital Loss:</label>
+            <input type="number" name="capital-loss" placeholder="Enter Capital Loss" required>
+
+            <label>Hours per Week:</label>
+            <input type="number" name="hours-per-week" placeholder="Enter Hours" required>
+
+            <div class="radio-group">
+                <label>Are You Married?</label>
+                <label><input type="radio" name="marital-status" value="Married-civ-spouse" required> Yes</label>
+                <label><input type="radio" name="marital-status" value="Other"> No</label>
+            </div>
+
+            <div class="radio-group">
+                <label>Do You Have an Occupation (Sales)?</label>
+                <label><input type="radio" name="occupation" value="Sales" required> Yes</label>
+                <label><input type="radio" name="occupation" value="Other"> No</label>
+            </div>
+
+            <input type="submit" value="Predict">
+        </form>
+
+        {% if prediction %}
+            <div class="result">{{ prediction }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>
